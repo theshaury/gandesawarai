@@ -137,22 +137,22 @@
 
 </head>
 
-  <!-- Floating Glow Backgrounds -->
-  <div class="bg-effects">
-    <div class="glow-gradient"></div>
-    <div class="glow-gradient glow-gradient2"></div>
-    <script>
-      for (let i = 0; i < 40; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = `${Math.random() * 100}vw`;
-        p.style.top = `${Math.random() * 100}vh`;
-        p.style.animationDuration = `${8 + Math.random() * 5}s`;
-        p.style.opacity = Math.random() * 0.3 + 0.2;
-        document.body.appendChild(p);
-      }
-    </script>
-  </div>
+<!-- Floating Glow Backgrounds -->
+<div class="bg-effects">
+  <div class="glow-gradient"></div>
+  <div class="glow-gradient glow-gradient2"></div>
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = `${Math.random() * 100}vw`;
+      p.style.top = `${Math.random() * 100}vh`;
+      p.style.animationDuration = `${8 + Math.random() * 5}s`;
+      p.style.opacity = Math.random() * 0.3 + 0.2;
+      document.body.appendChild(p);
+    }
+  </script>
+</div>
 
 <body class="flex flex-col h-screen">
   <div class="text-2xl text-center p-4 font-bold shadow text-blue-300">🌟 Gandeswar AI se Batkahi! 🌟</div>
@@ -163,30 +163,34 @@
   </div>
   <script>
     const responses = {
-      "atom": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "jp morgan": `Bs 2 cheez\n• Education Highest\n• Employment 10 Year`,
-      "comcast": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "wise": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "uhg": `3 cheez\n• Address(Present aur Permanent dono)\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "sbi": `3 cheez\n• Address(Sirf Present)\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "hdfc": `3 cheez\n• Address(Sirf Present)\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "amazon": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "cigna": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "hp": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "scb": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "facebook": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "avalon": `Bs 2 cheez\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)`,
-      "westpack": `4 cheez\n• Address(Sirf Present)\n• Education Highest\n• Employment 1 Year (band 11 ya 12 ho to)\n• Employment 3 Year (band 10 ya use niche ke ho)\n• Reference Jitne Employment ki Entry utna hi reference`,
-      "ibmdaksh": `Eski entry nhi jayegi aur eske baad wali bhi nhi jayengi`,
-      "convergys": `Eski entry nhi jayegi aur eske baad wali bhi nhi jayengi`,
-      "concentrix": `Eski entry nhi jayegi aur eske baad wali bhi nhi jayengi`,
-      "webhelp": `Eski entry nhi jayegi aur eske baad wali bhi nhi jayengi`,
-      "capita": `Eske agar koe ek bhi document hai to Required nhi karna hai nhi to TL koe problem ho jati h`,
-      "teleperformance": `Eske agar koe ek bhi document hai to Required nhi karna hai nhi to TL koe problem ho jati h`,
-      "mahindra": `Eske agar koe ek bhi document hai to Required nhi karna hai nhi to TL koe problem ho jati h`
+      "avalon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "cigna": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "google": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "virgin med": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "hp": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "amazon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "att": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "comcast": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "dnb": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "hp sales": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "sprint": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "ola": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "amex": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "gap": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "wise": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "goldman sachs": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "block": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "atom": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "intuit": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "barclays": `2 Check\n• Education Highest\n• Employment 3 year`,
+      "jp morgan": `2 Check\n• Education Highest\n• Employment 10 year`,
+      "citi": `2 Check\n• Education Highest\n• Employment 7 year`,
+      "carbon": `2 Check\n• Education Highest\n• Employment 7 year`,
+      "target": `2 Check\n• Education Last 2\n• Employment last 2`,
+      "palo alto": `2 Check\n• Education Highest\n• Employment last 1`
     };
 
-    const emojis = ['💥', '✨', '🔥', '💫', '🎉'];
+    const emojis = ['🔥', '✨', '💥', '💫', '🎉'];
     const chatLog = document.getElementById("chat-log");
     const userInput = document.getElementById("user-input");
     const sendBtn = document.getElementById("send-btn");
