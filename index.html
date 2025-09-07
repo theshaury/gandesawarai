@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gandesawar AI - Welcome</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0D1117;
+      color: #C9D1D9;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .accent-blue { color: #58A6FF; }
+
+    /* Bubble Background */
+    .bubbles {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      width: 10px;
+      height: 10px;
+      background-color: rgba(88, 166, 255, 0.2);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+    }
+    .bubble:nth-child(1){ left:5%; animation-duration:8s; width:8px; height:8px; }
+    .bubble:nth-child(2){ left:15%; animation-duration:12s; width:12px; height:12px; }
+    .bubble:nth-child(3){ left:25%; animation-duration:9s; width:10px; height:10px; }
+    .bubble:nth-child(4){ left:35%; animation-duration:11s; width:14px; height:14px; }
+    .bubble:nth-child(5){ left:45%; animation-duration:10s; width:8px; height:8px; }
+    .bubble:nth-child(6){ left:55%; animation-duration:13s; width:10px; height:10px; }
+    .bubble:nth-child(7){ left:65%; animation-duration:9s; width:12px; height:12px; }
+    .bubble:nth-child(8){ left:75%; animation-duration:14s; width:10px; height:10px; }
+    .bubble:nth-child(9){ left:85%; animation-duration:12s; width:14px; height:14px; }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.3; }
+      50% { opacity: 0.5; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Neon glow animation for headings */
+    .heading-glow {
+      color: #58A6FF;
+      text-shadow: 0 0 10px #58A6FF, 0 0 20px #1DA1F2;
+      animation: heading-neon 2s infinite alternate;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes heading-neon {
+      0% { text-shadow: 0 0 10px #58A6FF, 0 0 20px #1DA1F2; }
+      25% { text-shadow: 0 0 15px #1DA1F2, 0 0 30px #0ABAB5; }
+      50% { text-shadow: 0 0 20px #0ABAB5, 0 0 40px #58A6FF; }
+      75% { text-shadow: 0 0 15px #1DA1F2, 0 0 30px #58A6FF; }
+      100% { text-shadow: 0 0 10px #58A6FF, 0 0 20px #1DA1F2; }
+    }
+
+    /* Buttons & AI card effects */
+    .btn-outline {
+      border: 1px solid #388BFD;
+      color: #58A6FF;
+      transition: all 0.3s ease;
+      background-color: #0D1117;
+      animation: neon-glow 3s infinite alternate, bounce 2s infinite;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-outline:hover {
+      background-color: rgba(88, 166, 255, 0.1);
+      box-shadow: 0 0 25px #58A6FF, 0 0 50px #1DA1F2;
+      animation: neon-flicker 0.5s infinite;
+    }
+    .btn-primary-glow {
+      background-color: #388BFD;
+      color: #fff;
+      transition: all 0.3s ease;
+      animation: neon-glow 1.5s infinite alternate, bounce 1.5s infinite;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary-glow:hover {
+      background-color: #58A6FF;
+      box-shadow: 0 0 30px #58A6FF, 0 0 60px #1DA1F2;
+      animation: neon-flicker 0.5s infinite;
+    }
+
+    @keyframes neon-glow {
+      0% { box-shadow: 0 0 10px #58A6FF, 0 0 20px #58A6FF; }
+      25% { box-shadow: 0 0 15px #1DA1F2, 0 0 30px #1DA1F2; }
+      50% { box-shadow: 0 0 20px #0ABAB5, 0 0 40px #0ABAB5; }
+      75% { box-shadow: 0 0 15px #58A6FF, 0 0 30px #58A6FF; }
+      100% { box-shadow: 0 0 10px #58A6FF, 0 0 20px #58A6FF; }
+    }
+    @keyframes bounce { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
+    @keyframes neon-flicker {
+      0%,100% {box-shadow: 0 0 25px #58A6FF, 0 0 50px #1DA1F2;}
+      20% {box-shadow: 0 0 10px #58A6FF, 0 0 20px #1DA1F2;}
+      40% {box-shadow: 0 0 30px #58A6FF, 0 0 60px #1DA1F2;}
+      60% {box-shadow: 0 0 12px #58A6FF, 0 0 24px #1DA1F2;}
+      80% {box-shadow: 0 0 28px #58A6FF, 0 0 56px #1DA1F2;}
+    }
+
+    footer { border-top: 1px solid #30363D; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Bubble Background -->
+  <div class="bubbles">
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  </div>
+
+  <div class="flex flex-col min-h-screen z-top">
+
+    <!-- Navbar -->
+    <header class="p-4 md:p-6 relative z-top">
+      <nav class="container mx-auto flex justify-between items-center">
+        <div class="text-xl md:text-2xl font-bold heading-glow">
+          <a href="#">Gandesawar AI</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow flex items-center relative z-top">
+      <section class="container mx-auto text-center py-16 md:py-24 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold heading-glow">Welcome to Gandesawar World</h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-400 font-semibold">
+          Powered by <span class="accent-blue">Shaurya</span>
+        </p>
+        <p class="mt-2 text-lg md:text-xl max-w-2xl mx-auto">
+          Your personal gateway to the world's smartest AI assistants.
+        </p>
+        <a href="chatbot.html" class="btn-primary-glow inline-block text-lg font-semibold px-8 py-3 mt-10 rounded-lg shadow-lg">
+          Start Chatting
+        </a>
+      </section>
+    </main>
+
+    <!-- AI Tools Grid -->
+    <section id="switch-ai" class="py-16 md:py-24 px-4 relative z-top">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 heading-glow">Switch to Other AI Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://chat.openai.com/" target="_blank" class="block">ChatGPT</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Generates AI-powered text.</p>
+            <p class="text-sm mt-2">Best for: Ideas, research, chatbots</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://copy.ai/" target="_blank" class="block">Copy.ai</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Creates ad copies & blogs.</p>
+            <p class="text-sm mt-2">Best for: Marketing, social media</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://grammarly.com/" target="_blank" class="block">Grammarly</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Fixes grammar & style.</p>
+            <p class="text-sm mt-2">Best for: Writing, emails, documents</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://www.canva.com/magic-write/" target="_blank" class="block">Canva Magic Write</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: AI text for design & posts.</p>
+            <p class="text-sm mt-2">Best for: Captions, ads, blogs</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://pictory.ai/" target="_blank" class="block">Pictory</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Turns text into videos.</p>
+            <p class="text-sm mt-2">Best for: Marketing videos, YouTube</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://www.descript.com/" target="_blank" class="block">Descript</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Edit video & audio via text.</p>
+            <p class="text-sm mt-2">Best for: Podcasts, editing</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://leonardo.ai/" target="_blank" class="block">Leonardo.ai</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Creates stunning AI images.</p>
+            <p class="text-sm mt-2">Best for: Art, ads, visuals</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://www.remove.bg/" target="_blank" class="block">Remove.bg</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Removes image backgrounds.</p>
+            <p class="text-sm mt-2">Best for: Product photos, edits</p>
+          </div>
+
+          <div class="btn-outline p-4 rounded-lg font-semibold">
+            <a href="https://aistudio.google.com/prompts/new_chat?model=gemini-2.5-flash-image-preview" target="_blank" class="block">Nano Banana AI</a>
+            <p class="text-sm mt-2 text-gray-300">How it helps: Fun creative AI experiments.</p>
+            <p class="text-sm mt-2">Best for: Playful content & innovation</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 text-gray-500 relative z-top">
+      <p>&copy; 2025 Gandesawar AI. All rights reserved.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
