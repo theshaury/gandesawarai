@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gandeswar AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #0f172a, #1e293b);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .msg-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      max-width: 90%;
+      transition: transform 0.3s;
+    }
+    .msg-row:hover {
+      transform: scale(1.01);
+    }
+    .msg-row.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+    .msg-avatar {
+      font-size: 28px;
+      filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+    }
+    .msg-bubble {
+      padding: 14px 18px;
+      border-radius: 18px;
+      white-space: pre-line;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: background 0.3s ease;
+      word-wrap: break-word;
+    }
+    .user-msg {
+      background: rgba(59, 130, 246, 0.3);
+      border: 1px solid #3b82f6;
+    }
+    .ai-msg {
+      background: rgba(51, 65, 85, 0.3);
+      border: 1px solid #94a3b8;
+    }
+    .fly-bubble {
+      position: absolute;
+      padding: 12px 16px;
+      border-radius: 16px;
+      max-width: 320px;
+      z-index: 50;
+      white-space: pre-line;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      font-weight: 500;
+    }
+    .emoji {
+      position: absolute;
+      font-size: 22px;
+      animation: explode 0.8s ease-out forwards;
+    }
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2) translateY(-50px); opacity: 0; }
+    }
+    .input-bar {
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid #374151;
+      backdrop-filter: blur(10px);
+    }
+    .btn-glow {
+      background: linear-gradient(145deg, #2563eb, #1d4ed8);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+      transition: 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 18px rgba(96, 165, 250, 1);
+    }
+    .typing-dots span {
+        animation: blink 1.4s infinite both;
+        display: inline-block;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    @keyframes blink {
+        0% { opacity: 0.2; }
+        20% { opacity: 1; }
+        100% { opacity: 0.2; }
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif !important;
+      background-color: #0D1117 !important;
+      color: #C9D1D9 !important;
+      position: relative;
+    }
+    .glow-gradient {
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at center, #58A6FF33, transparent 70%);
+      filter: blur(80px);
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .glow-gradient2 {
+      bottom: -80px;
+      right: -100px;
+      animation-delay: 3s;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #58A6FF;
+      opacity: 0.2;
+      animation: floatUp 10s linear infinite;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0.4; }
+    }
+    .text-glow {
+      text-shadow: 0 0 5px #58A6FF, 0 0 10px #58A6FF;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Floating Glow Backgrounds -->
+  <div class="bg-effects">
+    <div class="glow-gradient"></div>
+    <div class="glow-gradient glow-gradient2"></div>
+    <script>
+      // Create particle effect
+      const particleContainer = document.createElement('div');
+      document.body.appendChild(particleContainer);
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.animationDelay = `${Math.random() * 10}s`;
+        p.style.animationDuration = `${8 + Math.random() * 5}s`;
+        p.style.opacity = Math.random() * 0.3 + 0.2;
+        particleContainer.appendChild(p);
+      }
+    </script>
+  </div>
+
+  <header class="text-2xl text-center p-4 font-bold shadow text-blue-300 text-glow">
+    🌟 Gandeswar AI se Batkahi! 🌟
+  </header>
+  <main id="chat-log" class="flex-1 overflow-y-auto px-4 pb-6 chat-container"></main>
+  <footer class="flex p-4 gap-3 bg-slate-900 input-bar">
+    <input type="text" id="user-input" placeholder="Yahan apna sandesh likhen..." class="flex-1 p-3 rounded-lg bg-transparent text-white outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"/>
+    <button id="send-btn" class="px-5 py-2 rounded-lg text-white font-semibold btn-glow">Bhejen</button>
+  </footer>
+
+  <script>
+    // Pre-defined responses for specific keywords (kept from original)
+    const responses = {
+      "avalon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "cigna": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "google": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "virgin med": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "hp": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "amazon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "att": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "comcast": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "dnb": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "hp sales": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "sprint": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "ola": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "amex": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "gap": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "wise": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "goldman sachs": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "block": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "atom": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "intuit": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
+      "barclays": `2 Check\n• Education Highest\n• Employment 3 year`,
+      "jp morgan": `2 Check\n• Education Highest\n• Employment 10 year`,
+      "citi": `2 Check\n• Education Highest\n• Employment 7 year`,
+      "carbon": `2 Check\n• Education Highest\n• Employment 7 year`,
+      "target": `2 Check\n• Education Last 2\n• Employment last 2`,
+      "palo alto": `2 Check\n• Education Highest\n• Employment last 1`
+    };
+
+    const emojis = ['🔥', '✨', '💥', '💫', '🎉'];
+    const chatLog = document.getElementById("chat-log");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    function explodeEmojiAt(x, y) {
+      for (let i = 0; i < 5; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji';
+        emoji.style.left = `${x + (Math.random() - 0.5) * 60}px`;
+        emoji.style.top = `${y + (Math.random() - 0.5) * 40}px`;
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 800);
+      }
+    }
+
+    function flyMessage(text, sender) {
+        const bubble = document.createElement("div");
+        bubble.className = `fly-bubble ${sender === "user" ? "user-msg" : "ai-msg"}`;
+        bubble.textContent = text;
+
+        const startX = sender === "user" ? window.innerWidth - 100 : 100;
+        const startY = window.innerHeight - 80;
+        const endX = startX;
+        const endY = window.innerHeight - 150;
+
+        bubble.style.left = startX + "px";
+        bubble.style.top = startY + "px";
+        document.body.appendChild(bubble);
+
+        bubble.animate([
+            { transform: 'translateY(0) scale(0.5)', opacity: 0 },
+            { transform: `translateY(-70px) scale(1)`, opacity: 1 }
+        ], { duration: 400, easing: 'ease-out' });
+        
+        setTimeout(() => {
+            bubble.animate([
+                { opacity: 1 },
+                { opacity: 0 }
+            ], { duration: 400, easing: 'ease-in' });
+            setTimeout(() => bubble.remove(), 400);
+            addMessageToLog(sender, text);
+            if (sender === 'user') explodeEmojiAt(startX, startY);
+        }, 400);
+    }
+    
+    function addMessageToLog(sender, text) {
+        const row = document.createElement("div");
+        row.className = `msg-row ${sender}`;
+
+        const avatar = document.createElement("div");
+        avatar.className = "msg-avatar";
+        avatar.textContent = sender === "user" ? "🧑" : "🤖";
+
+        const msg = document.createElement("div");
+        msg.className = `msg-bubble ${sender === "user" ? "user-msg" : "ai-msg"}`;
+        msg.textContent = text;
+
+        row.appendChild(avatar);
+        row.appendChild(msg);
+        chatLog.appendChild(row);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return row;
+    }
+
+    async function getGenerativeAiResponse(prompt) {
+        const apiKey = "AIzaSyDjnvsBQFkxJaZNStnRpelKPPb95VpK8QQ"; // This will be provided by the runtime environment
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+        
+        const systemPrompt = `You are Gandeswar AI, a helpful and friendly assistant from India. Respond in a conversational mix of Hindi and English (Hinglish), but if the user asks a technical or complex question, provide a clear, accurate answer in English. Keep responses relatively short and engaging. For example, if asked "How are you?", you could say "Main theek hoon, aap batao!". If asked "What is photosynthesis?", you should explain it clearly in English.`;
+
+        const payload = {
+            contents: [{ parts: [{ text: prompt }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] },
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                console.error("API Error Response:", await response.text());
+                return `Arre! Server se baat nahi ho pa rahi. (Error: ${response.status})`;
+            }
+
+            const result = await response.json();
+            const candidate = result.candidates?.[0];
+
+            if (candidate?.content?.parts?.[0]?.text) {
+                return candidate.content.parts[0].text;
+            } else {
+                console.warn("No content in API response:", result);
+                return "Hmm, iska jawab to mere paas nahi hai. Kuch aur pucho?";
+            }
+        } catch (error) {
+            console.error("Fetch API error:", error);
+            return "Lagta hai internet aaja-aaja kar raha hai. Connection check karo.";
+        }
+    }
+
+    async function handleSend() {
+        const input = userInput.value.trim();
+        if (!input) return;
+        
+        const userMessageText = input;
+        userInput.value = "";
+        
+        addMessageToLog("user", userMessageText);
+        explodeEmojiAt(window.innerWidth - 80, window.innerHeight - 80);
+
+        const lower = userMessageText.toLowerCase();
+        const match = Object.keys(responses).find(k => lower.includes(k));
+
+        if (match) {
+            setTimeout(() => addMessageToLog("ai", responses[match]), 800);
+            return;
+        }
+
+        const typingRow = addMessageToLog("ai", "");
+        const typingBubble = typingRow.querySelector('.msg-bubble');
+        typingBubble.innerHTML = `<div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>`;
+
+        const reply = await getGenerativeAiResponse(userMessageText);
+        typingBubble.textContent = reply;
+    }
+
+    sendBtn.onclick = handleSend;
+    userInput.addEventListener("keypress", e => {
+        if (e.key === "Enter") handleSend();
+    });
+    
+    window.onload = () => {
+        setTimeout(() => {
+            addMessageToLog("ai", "Namaste! Main Gandeswar AI hoon. Aapki kya sahayata kar sakta hoon?");
+        }, 500);
+    };
+  </script>
+</body>
+</html>
+
