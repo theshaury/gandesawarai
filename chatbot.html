@@ -188,36 +188,371 @@
   <script>
     // Pre-defined responses for specific keywords (kept from original)
     const responses = {
-      "atul": `Gandu Bosdiwala hai ye`,
-      "shubham": `Bhauji baj, sirf dhoodh ke chakar me rahta hai ye`,
-      "chandan": `Eske kae paryayvachi(synonym) hai Gandu, Laundu, Laudu chand`,
-      "avalon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "cigna": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "google": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "virgin med": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "hp": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "amazon": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "att": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "comcast": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "dnb": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "hp sales": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "sprint": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "ola": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "amex": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "gap": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "wise": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "goldman sachs": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "block": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "atom": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "intuit": `2 Check\n• Education Highest\n• Employment 1 year agar band 11 ya 12\n• Employment 3 year agar band 10 ya use kam`,
-      "barclays": `2 Check\n• Education Highest\n• Employment 3 year`,
-      "jp morgan": `2 Check\n• Education Highest\n• Employment 10 year`,
-      "citi": `2 Check\n• Education Highest\n• Employment 7 year`,
-      "carbon": `2 Check\n• Education Highest\n• Employment 7 year`,
-      "target": `2 Check\n• Education Last 2\n• Employment last 2`,
-      "palo alto": `2 Check\n• Education Highest\n• Employment last 1`
-    };
-
+        "adty birla": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "aetna": `4 Check
+      • Education highest
+      • Employment 5 saal sabhi comp grade ke liye
+      • OIG check
+      • GSA check`,
+      
+        "avalon": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "cigna": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "cisco": `5 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address last 7 years
+      • Police verification last 7 years
+      • 2 reference`,
+      
+        "citi": `5 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current
+      • Police verification current
+      • 2 reference`,
+      
+        "deutche bk": `5 Check
+      • Education highest
+      • Employment 5 saal sabhi comp grade ke liye
+      • Address current
+      • 2 reference`,
+      
+        "google": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "hcsc": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address last 7 years, current & permanent`,
+      
+        "hdfc": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current (except Chandigarh)`,
+      
+        "highmark": `5 Check
+      • Education highest
+      • Employment 5 saal sabhi comp grade ke liye
+      • Address current
+      • OIG check
+      • GSA check`,
+      
+        "ibm insur": `4 Check
+      • Education highest
+      • Employment 7 saal sabhi comp grade ke liye
+      • Address last 10 years
+      • Police verification last 10 years`,
+      
+        "indusind": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Police verification current`,
+      
+        "kvb": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • 2 reference`,
+      
+        "ltsb": `5 Check
+      • Education highest
+      • Employment 3 saal sabhi comp grade ke liye
+      • Address current
+      • Police verification last 1 year`,
+      
+        "nationwide": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "scotia bnk": `3 Check
+      • Education highest
+      • Employment 7 saal sabhi comp grade ke liye
+      • Address current`,
+      
+        "westpac": `5 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current
+      • Reference: 2 reference for 2 employment cases & 1 reference for 1 employment cases, fresher no reference`,
+      
+        "skyhawke": `5 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current
+      • Police verification current
+      • 2 reference`,
+      
+        "symantec": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "tsb": `5 Check
+      • Education highest
+      • Employment 3 saal sabhi comp grade ke liye
+      • Address current
+      • Police verification last 1 year`,
+      
+        "uhg": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current & permanent`,
+      
+        "virgin med": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "vmware": `5 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current
+      • Police verification current
+      • 2 reference`,
+      
+        "scb": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "scb 2": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current`,
+      
+        "hf management ser": `4 Check
+      • Education highest
+      • Employment 5 saal sabhi comp grade ke liye
+      • OIG check
+      • GSA check`,
+      
+        "hp": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "macy": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current & permanent`,
+      
+        "flipkart": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current`,
+      
+        "florida blue bcbs": `4 Check
+      • Education highest
+      • Employment 6 saal sabhi comp grade ke liye
+      • OIG check
+      • GSA check`,
+      
+        "barclays": `4 Check
+      • Education highest
+      • Employment 3 saal sabhi comp grade ke liye
+      • Address current & permanent`,
+      
+        "barclays 2": `2 Check
+      • Education highest
+      • Employment 3 saal sabhi comp grade ke liye`,
+      
+        "facebook": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "amazon": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "amazon 2": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "att": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "citi 2": `2 Check
+      • Education highest
+      • Employment last 7 years`,
+      
+        "comcast": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "dnb": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "hp sales": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "jpmc": `2 Check
+      • Education highest
+      • Employment 10 saal sabhi comp grade ke liye`,
+      
+        "microsoft": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "netapp": `2 Check
+      • Education highest
+      • Employment 5 saal sabhi comp grade ke liye`,
+      
+        "target": `2 Check
+      • Education last 2 education
+      • Employment last 2 employments`,
+      
+        "us cellular": `4 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Police verification permanent
+      • 2 reference`,
+      
+        "ibm kyc": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address permanent`,
+      
+        "coinbase": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address last 7 years`,
+      
+        "pearson": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address permanent`,
+      
+        "hsbc": `3 Check
+      • Education highest
+      • Employment last 5 years employments
+      • Address current`,
+      
+        "paypal": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • 2 reference`,
+      
+        "sbi": `3 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • Address current`,
+      
+        "sprint": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "ola": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "palo alto": `2 Check
+      • Education highest
+      • Employment last all employment`,
+      
+        "wellcare": `4 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • OIG check
+      • GSA check`,
+      
+        "amex": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "gap": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "carbon": `2 Check
+      • Education highest
+      • Employment last 7 years`,
+      
+        "ibc_independence blue cross llc": `4 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar
+      • OIG check
+      • GSA check`,
+      
+        "wise": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "goldman sachs": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "block": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "atom": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "intuit": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`,
+      
+        "rest all accounts": `2 Check
+      • Education highest
+      • Employment 1 year agar band 11 ya 12
+      • Employment 3 year agar band 10 ya use upar`
+      };
     const emojis = ['🔥', '✨', '💥', '💫', '🎉'];
     const chatLog = document.getElementById("chat-log");
     const userInput = document.getElementById("user-input");
