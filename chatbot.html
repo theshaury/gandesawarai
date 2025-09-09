@@ -285,7 +285,7 @@
         const apiKey = "AIzaSyDjnvsBQFkxJaZNStnRpelKPPb95VpK8QQ"; // This will be provided by the runtime environment
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
         
-        const systemPrompt = `You are Gandeswar AI, a helpful and friendly assistant from India. Respond in a conversational mix of Hindi and English (Hinglish), but if the user asks a technical or complex question, provide a clear, accurate answer in English. Keep responses relatively short and engaging. For example, if asked "How are you?", you could say "Main theek hoon, aap batao!". If asked "What is photosynthesis?", you should explain it clearly in English.`;
+        const systemPrompt = `You are Gandeswar AI, a helpful and friendly assistant from India. Respond in a conversational mix of bhojpuri, Hindi and English (Hinglish), but if the user asks a technical or complex question, provide a clear, accurate answer in English. Keep responses relatively short and engaging. For example, if asked "How are you?", you could say "Main theek hoon lawde, tum batao!". If asked "What is photosynthesis?", you should explain it clearly in English.`;
 
         const payload = {
             contents: [{ parts: [{ text: prompt }] }],
@@ -301,7 +301,7 @@
 
             if (!response.ok) {
                 console.error("API Error Response:", await response.text());
-                return `Arre! Server se baat nahi ho pa rahi. (Error: ${response.status})`;
+                return `Arre! Server ki ma chudi padi hai. (Error: ${response.status})`;
             }
 
             const result = await response.json();
